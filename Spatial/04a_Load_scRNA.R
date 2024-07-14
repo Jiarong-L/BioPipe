@@ -1,11 +1,6 @@
-library(ggplot2)
 library(Seurat)
 library(dplyr)
-library(mefa)
 library(stringr)
-library(harmony)
-load('GBM4.rdata')
-
 
 
 
@@ -53,18 +48,5 @@ for(i in 1:length(anno)){
     }  
 }
 scRNA$cell_type <- anno
-
-
-## Harmony: group.by.vars should be cell annotation
-scRNA <- RunHarmony(scRNA,reduction = "pca",group.by.vars = "cell_type",reduction.save = "harmony")
-
-
-## Check Batch Effect before correction
-scRNA <- RunUMAP(scRNA, reduction = "pca", dims = 1:30, verbose = F, reduction.name = "umap_pca")
-scRNA <- RunUMAP(scRNA, reduction = "harmony", dims = 1:30, verbose = F, reduction.name = "umap_harmony")
-p1 <- DimPlot(scRNA,reduction = "umap_pca", group.by = "Source")
-p2 <- DimPlot(scRNA,reduction = "umap_harmony", group.by = "Source")
-ggsave('../img/04_1.png', p1 + p2, width= 6 , height= 3)
-
 
 save(scRNA,file = 'sc.rdata')

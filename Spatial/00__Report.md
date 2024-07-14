@@ -55,20 +55,25 @@ GBM4_spaceranger_out
 之后用clusterProfiler对Region的marker进行KEGG富集分析，操作与单细胞SeuratObj一致    
 
 
-## 04 解卷积
+## 04 解卷积R
 
 10X in-situ 的分辨率还没有达到细胞级别，即每个spot中可能包含多个细胞。
 
-利用单细胞转录组数据对spot进行解卷积是比较常见的作法，例如 [cell2location (Python)](https://cloud.tencent.com/developer/article/2376790)，[CARD (R)](https://github.com/YMa-lab/CARD)
+利用单细胞转录组数据对spot进行解卷积是比较常见的作法，例如 [cell2location (Python)](https://cloud.tencent.com/developer/article/2376790)，[CARD (R)](https://yma-lab.github.io/CARD/) -- Q：与bulk RNA的解卷积工具有什么不同？
 
-前序: [Harmony](https://cloud.tencent.com/developer/article/2224243) 合并多个单细胞转录组数据 (目测效果似乎不好，可能是因为Unknown的关系？)
+前序: [Harmony](https://cloud.tencent.com/developer/article/2224243)/CCA/.. 合并多个单细胞转录组数据 (目测CCA效果最好？虽然样本性别不同)
 
 ![](./img/04_1.png)
 
 
 
 
-TBA
+
+
+
+
+
+## 05 细胞通信
 
 
 
@@ -84,7 +89,7 @@ TBA
 
 
 
-## Errors/Warning
+## Issues
 
 * merge时的warning有关:```Warning: Some cell names are duplicated across objects provided. Renaming to enforce unique cell names.```
     - 结果是 ```TTTCCTCCACACAGAG``` 变成了 ```TTTCCTCCACACAGAG_i``` 
@@ -95,4 +100,36 @@ TBA
     - **建议各个数据集自己先filter，然后再merge**
 
 * Harmony 需要知道cell的注释才能进行矫正（```group.by.vars```），否则会没有效果
+
+* 未解决 ```Recv failure: Connection reset by peer```
+    - sudo vim /etc/hosts 修改Github对应的IP
+    - sudo /etc/init.d/network restart  重启网络（WSL需重启电脑--不过依旧没有生效）
+
+
+* wsl 安装CARD解卷积
+```R
+## libgdal -- for sf
+sudo apt install libudunits2-dev
+sudo apt install aptitude
+sudo aptitude install libgdal-dev
+
+## boot -- for V8
+# sudo apt-get install scons 
+# sudo apt-get install libboost-dev libboost-thread-dev
+# sudo apt-get install libboost-system-dev libboost-python-dev
+sudo apt-get install libv8-dev
+install.packages('V8')
+install.packages('concaveman')
+BiocManager::install("SingleCellExperiment")  ## ?? still "Skipping 3 packages not available..."
+devtools::install_github('YMa-lab/CARD')
+```
+
+
+
+
+
+
+
+
+
 
