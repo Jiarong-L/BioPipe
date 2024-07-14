@@ -31,6 +31,7 @@ scRNA <- IntegrateLayers(
   verbose = FALSE
 )
 
+scRNA <- JoinLayers(scRNA)  
 
 ## Check Batch Effect before/after correction
 scRNA <- RunUMAP(scRNA, reduction = "pca", dims = 1:30, verbose = F, reduction.name = "umap_pca")

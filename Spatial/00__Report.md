@@ -1,5 +1,5 @@
 
-本次练习主要跟随 [空间转录组分析实战](https://blog.csdn.net/weixin_44359288/article/details/136514061) 系列教程，增加了一些注解，意在整理空间转录组可能会分析的项目。
+本次练习主要跟随 [空间转录组分析实战](https://blog.csdn.net/weixin_44359288/article/details/136514061) 系列教程，修正了一些代码错误，增加了一些注解/其它，意在整理空间转录组可能会分析的项目。
 
 注，由于偷懒没有QC，这一步请参考单细胞教程
 
@@ -55,15 +55,25 @@ GBM4_spaceranger_out
 之后用clusterProfiler对Region的marker进行KEGG富集分析，操作与单细胞SeuratObj一致    
 
 
-## 04 解卷积R
+## 04 解卷积
 
 10X in-situ 的分辨率还没有达到细胞级别，即每个spot中可能包含多个细胞。
 
 利用单细胞转录组数据对spot进行解卷积是比较常见的作法，例如 [cell2location (Python)](https://cloud.tencent.com/developer/article/2376790)，[CARD (R)](https://yma-lab.github.io/CARD/) -- Q：与bulk RNA的解卷积工具有什么不同？
 
-前序: [Harmony](https://cloud.tencent.com/developer/article/2224243)/CCA/.. 合并多个单细胞转录组数据 (目测CCA效果最好？虽然样本性别不同)
+前序: [Harmony](https://cloud.tencent.com/developer/article/2224243)/CCA/.. 合并多个单细胞转录组数据
 
 ![](./img/04_1.png)
+
+随后观察已知Cell Marker的表达量，对单细胞clusters进行细胞类型注释    
+
+![](./img/04_2.png)
+
+
+之后，即可利用单细胞数据对空间spot进行解卷积
+
+
+
 
 
 
@@ -91,6 +101,8 @@ GBM4_spaceranger_out
 
 ## Issues
 
+* 当前版本 ```install.packages('BiocManager',version = '3.14')```   R version 4.1.2
+
 * merge时的warning有关:```Warning: Some cell names are duplicated across objects provided. Renaming to enforce unique cell names.```
     - 结果是 ```TTTCCTCCACACAGAG``` 变成了 ```TTTCCTCCACACAGAG_i``` 
 
@@ -104,6 +116,13 @@ GBM4_spaceranger_out
 * 未解决 ```Recv failure: Connection reset by peer```
     - sudo vim /etc/hosts 修改Github对应的IP
     - sudo /etc/init.d/network restart  重启网络（WSL需重启电脑--不过依旧没有生效）
+* BiocManager下载包时 ```'SSL connect error'```，openssl的问题？
+```bash
+sudo apt-get install openssl
+sudo apt-get install libssl-dev
+install.packages("openssl", repos = c("https://jeroen.r-universe.dev", "https://cloud.r-project.org"))
+```
+
 
 
 * wsl 安装CARD解卷积
@@ -122,14 +141,7 @@ install.packages('V8')
 install.packages('concaveman')
 BiocManager::install("SingleCellExperiment")  ## ?? still "Skipping 3 packages not available..."
 devtools::install_github('YMa-lab/CARD')
+BiocManager::install("TOAST")
+devtools::install_github('xuranw/MuSiC')
 ```
-
-
-
-
-
-
-
-
-
 

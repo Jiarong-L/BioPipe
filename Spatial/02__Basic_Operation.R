@@ -8,7 +8,7 @@ library(Seurat)
 GBM4 <-Load10X_Spatial(
        data.dir ="GBM4_spaceranger_out/", 
        filename = "filtered_feature_bc_matrix.h5", 
-       slice ="GBM4_HE_img")
+       slice ="GBM4_HE_img")  ## key: GBM4HEimg
 
 
 ## Rename cell names
