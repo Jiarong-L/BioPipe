@@ -70,20 +70,21 @@ GBM4_spaceranger_out
 ![](./img/04_2.png)
 
 
-之后，即可利用单细胞数据对空间spot进行解卷积
+之后，即可利用单细胞数据对空间spot进行解卷积（由于网络问题，没有成功安装，使用官方图示：pie/one_celltype/two_celltype）
 
-
-
-
-
-
-
-
-
+![two_celltype](./img/04_3.png)
 
 
 
 ## 05 细胞通信
+
+
+
+
+
+
+
+
 
 
 
@@ -125,7 +126,7 @@ install.packages("openssl", repos = c("https://jeroen.r-universe.dev", "https://
 
 
 
-* wsl 安装CARD解卷积
+* wsl 安装CARD解卷积（R版本太低，装不了MuSiC）
 ```R
 ## libgdal -- for sf
 sudo apt install libudunits2-dev
@@ -141,7 +142,7 @@ install.packages('V8')
 install.packages('concaveman')
 BiocManager::install("SingleCellExperiment")  ## ?? still "Skipping 3 packages not available..."
 devtools::install_github('YMa-lab/CARD')
-BiocManager::install("TOAST")
+BiocManager::install("TOAST")    ## >= 1.10.1 ,need  R (version "4.4") !!!
 devtools::install_github('xuranw/MuSiC')
 ```
 

@@ -27,7 +27,7 @@ sc_meta <- scRNA@meta.data %>%
 # AAACGGGAGCTCAACT_1 AAACGGGAGCTCAACT_1 SeuratProject         Unknown
 
 
-
+##### Do deCov
 CARD_obj = createCARDObject( 
   sc_count = sc_count, 
   sc_meta = sc_meta, 
@@ -40,14 +40,29 @@ CARD_obj = createCARDObject(
 CARD_obj = CARD_deconvolution(CARD_object = CARD_obj)   ## deConvolution!!
 
 
+p1 <- CARD.visualize.pie(
+	proportion = CARD_obj@Proportion_CARD,
+	spatial_location = CARD_obj@spatial_location, # colors = c("#FFD92F",...), 
+  radius = 0.52) 
+
+
+p2 <- CARD.visualize.prop(
+	proportion = CARD_obj@Proportion_CARD,        
+	spatial_location = CARD_obj@spatial_location, 
+	ct.visualize = c("A like","B like","C like"),                   ### selected cell types to visualize
+	NumCols = 2,pointSize = 3.0) 
+
+
+p3 <- CARD.visualize.prop.2CT(
+  proportion = CARD_obj@Proportion_CARD,             ### Cell type proportion estimated by CARD
+  spatial_location = CARD_obj@spatial_location,    
+  ct2.visualize = c("A like","B like"))              ### two cell types you want to visualize
 
 
 
+ggsave('../img/04_3.png', p1 + p2, width= 10 , height= 5)
 
 
-
-
-
-
-save(scRNA,file = 'scRNA.rdata')
+save(CARD_obj,file = 'card.rdata')
+# save(scRNA,file = 'scRNA.rdata')
 
