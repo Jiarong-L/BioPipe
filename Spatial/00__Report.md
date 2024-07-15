@@ -105,7 +105,7 @@ GBM4_spaceranger_out
 
 注：除了单个基因/pathway的plot，也可以通过设置```signaling = c(.............)```取多个基因/pathway的均值进行统计
 
-
+同时也可以用 ```netVisual_bubble``` 查看 ```C1->C2``` 间重要 L-R pairs 的表达量
 
 
 
