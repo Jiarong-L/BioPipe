@@ -86,15 +86,21 @@ GBM4_spaceranger_out
 ![celltalker (R)](https://github.com/arc85/celltalker/raw/master/man/figures/README-example-2.png)
 
 
-空间转录组会考虑邻近的、不同类型细胞之间的通信；CellChat 为例：可以查看 L-R pairs 在空间上的分布（左）：   
+而空间转录组需要考虑**邻近的**、不同类型细胞之间的通信
+
+
+工具以 CellChat 为例（但感觉它在计算时没有考虑空间距离？？）：可以查看 L-R pairs 在空间上的分布（左）：
+
 ![](./img/05_1.png)tc
 
 
 也可以查看指定pathway在不同类型细胞之间的通信（aggregating all L-R pairs in that pathway）：   
+
 ![](./img/05_2.png)
 
 
 以上二者可以这样理解：   
+
 ![](./img/05_3.png)
 
 注：除了单个基因/pathway的plot，也可以通过设置```signaling = c(.............)```取多个基因/pathway的均值进行统计
