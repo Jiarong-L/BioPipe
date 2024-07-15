@@ -55,7 +55,7 @@ GBM4_spaceranger_out
 之后用clusterProfiler对Region的marker进行KEGG富集分析，操作与单细胞SeuratObj一致    
 
 
-## 04 解卷积
+## 04 整合scRNA与Spatial
 
 10X in-situ 的分辨率还没有达到细胞级别，即每个spot中可能包含多个细胞。
 
@@ -72,11 +72,31 @@ GBM4_spaceranger_out
 
 之后，即可利用单细胞数据对空间spot进行解卷积（由于网络问题，没有成功安装，使用官方图示：pie/one_celltype/two_celltype）
 
-![two_celltype](./img/04_3.png)
+![CARD (R)](./img/04_3.png)
 
+
+除了解卷积之外，其它整合scRNA与Spatial的工具有: [16种整合方法测评](https://cloud.tencent.com/developer/article/2093090), [CellTrek(将单细胞映射至空间转录组切片)](https://cloud.tencent.com/developer/article/2355724)；最主要的目的是得到细胞水平的分辨率
 
 
 ## 05 细胞通信
+
+一般基于人工校正的[Ligand-Receptor数据库CellphoneDB](https://www.jianshu.com/p/38a9376f5286)进行细胞交互的注释，其它的工具基于类似的思路进行开发，常用的[CellChat](https://www.jianshu.com/p/b3d26ac51c5a)还考虑了多聚体和辅因子，以及信号通路水平的通信。
+
+单细胞意在分析不同细胞类型之间的相互作用；例如，iTALK会取细胞类型中相关基因的平均表达量
+![celltalker](https://github.com/arc85/celltalker/raw/master/man/figures/README-example-2.png)
+
+
+空间转录组会考虑邻近的、不同类型细胞之间，
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -145,4 +165,17 @@ devtools::install_github('YMa-lab/CARD')
 BiocManager::install("TOAST")    ## >= 1.10.1 ,need  R (version "4.4") !!!
 devtools::install_github('xuranw/MuSiC')
 ```
+
+* 网太差了，直接下载 CellChat release，[参考](https://blog.csdn.net/siyan156/article/details/132778833)，[参考找旧包](https://blog.csdn.net/prublue/article/details/130646509)
+```R
+wget https://cran.r-project.org/src/contrib/Archive/pbkrtest/pbkrtest_0.4-5.tar.gz
+install.packages('pbkrtest_0.4-5.tar.gz',repos=NULL)
+BiocManager::install("BiocNeighbors")
+# devtools::install_github("sqjin/CellChat")
+## https://codeload.github.com/sqjin/CellChat/zip/refs/heads/master
+## remove *.o and *.so in zip_file/src
+devtools::install_local("CellChat-master.zip")
+```
+
+
 
