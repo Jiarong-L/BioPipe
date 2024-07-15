@@ -42,9 +42,9 @@ GBM4_spaceranger_out
 
 ## 03 空间区域
 
-与单细胞不同，空间转录组的聚类不仅仅是为了定义细胞类型，更是为了定义功能区域。之后marker基因
+与单细胞不同，空间转录组的聚类不仅仅是为了定义细胞类型，更是为了辅助定义功能区域。
 
-通过对比HE染色片，或者对cell marker进行注释，可以给每个cell分配功能区域的标签。
+通过对比HE染色片，或者对cell marker进行注释，可以给每个cell分配功能区域的标签。（**这一信息事实上可以通过图像分割算法获得**，而且一个区域内也不一定只有一种细胞）
 
 ![](./img/03_1.png)
 
@@ -75,32 +75,29 @@ GBM4_spaceranger_out
 ![CARD (R)](./img/04_3.png)
 
 
-除了解卷积之外，其它整合scRNA与Spatial的工具有: [16种整合方法测评](https://cloud.tencent.com/developer/article/2093090), [CellTrek(将单细胞映射至空间转录组切片)](https://cloud.tencent.com/developer/article/2355724)；最主要的目的是得到细胞水平的分辨率
+除了解卷积之外，其它整合scRNA与Spatial的工具有: [16种整合方法测评](https://cloud.tencent.com/developer/article/2093090), [CellTrek](https://cloud.tencent.com/developer/article/2355724)，[MIA](https://www.jianshu.com/p/861bfa5cd03b)，Seurat Anchor，...；最主要的目的是将单细胞信息映射至空间转录组切片，以期得到细胞水平的分辨率
 
 
 ## 05 细胞通信
 
-一般基于人工校正的[Ligand-Receptor数据库CellphoneDB](https://www.jianshu.com/p/38a9376f5286)进行细胞交互的注释，其它的工具基于类似的思路进行开发，常用的[CellChat](https://www.jianshu.com/p/b3d26ac51c5a)还考虑了多聚体和辅因子，以及信号通路水平的通信。
+一般基于人工校正的[Ligand-Receptor数据库CellphoneDB](https://www.jianshu.com/p/38a9376f5286)进行细胞交互的注释，其它的工具基于类似的思路进行开发，常用的[CellChat (R)](https://cloud.tencent.com/developer/article/2356466)还考虑了多聚体和辅因子，以及信号通路水平的通信。其它工具：[stLearn (Python)](https://www.jianshu.com/p/17c3ef3dd312) 
 
 单细胞意在分析不同细胞类型之间的相互作用；例如，iTALK会取细胞类型中相关基因的平均表达量
-![celltalker](https://github.com/arc85/celltalker/raw/master/man/figures/README-example-2.png)
+![celltalker (R)](https://github.com/arc85/celltalker/raw/master/man/figures/README-example-2.png)
 
 
-空间转录组会考虑邻近的、不同类型细胞之间，
+空间转录组会考虑邻近的、不同类型细胞之间的通信；CellChat 为例：可以查看 L-R pairs 在空间上的分布（左）：   
+![](./img/05_1.png)tc
 
 
+也可以查看指定pathway在不同类型细胞之间的通信（aggregating all L-R pairs in that pathway）：   
+![](./img/05_2.png)
 
 
+以上二者可以这样理解：   
+![](./img/05_3.png)
 
-
-
-
-
-
-
-
-
-
+注：除了单个基因/pathway的plot，也可以通过设置```signaling = c(.............)```取多个基因/pathway的均值进行统计
 
 
 
