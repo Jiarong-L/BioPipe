@@ -30,17 +30,11 @@ library(Seurat)
 library(DoubletFinder)
 library(stringr)
 library(ggplot2)
+source("../scProcess_SCT.R")
 
-
-counts <- Read10X(data.dir = "pbmc3k/",gene.column = 1)
+counts <- Read10X(data.dir = "pbmc3k/",gene.column = 2)   ## 1:ENSG00xxx   2:geneName
 pbmc3k <- CreateSeuratObject(counts,  min.cells=3, min.features = 200)
-
-pbmc3k <- SCTransform(pbmc3k, assay = "RNA", verbose = FALSE) 
-pbmc3k <- RunPCA(pbmc3k, assay = "SCT", verbose = FALSE)        
-pbmc3k <- RunUMAP(pbmc3k, reduction = "pca", dims = 1:30)             
-pbmc3k <- RunTSNE(pbmc3k, reduction = "pca", dims = 1:30)          
-pbmc3k <- FindNeighbors(pbmc3k, reduction = "pca", dims = 1:30)     
-pbmc3k <- FindClusters(pbmc3k, verbose = FALSE, resolution = 0.1)  
+pbmc3k <- scProcess_SCT(pbmc3k)
 
 
 
@@ -70,8 +64,11 @@ pbmc3k <- doubletFinder(pbmc3k, PCs = sig_PC, pN = 0.25, pK = pK_bcmvn,
 
 
 ### Plot Singlet/Doublet 
-p1 <- DimPlot(pbmc3k, reduction = "umap", group.by = "DF.classifications_0.25_0.12_289") ## colnames(pbmc3k@meta.data)
+cols = colnames(pbmc3k@meta.data)
+res_col = cols[length(cols)]
+p1 <- DimPlot(pbmc3k, reduction = "umap", group.by = res_col) ## "DF.classifications_0.25_0.01_246"
 ggsave('../img/02a_1.png', p1, width= 5 , height= 3)
 
-
-sum(pbmc3k@meta.data$DF.classifications_0.25_0.12_289 == "Singlet")  ## 2700 --> 2411
+table(pbmc3k@meta.data[res_col])
+# Doublet Singlet
+#     246    2451
