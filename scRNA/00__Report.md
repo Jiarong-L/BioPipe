@@ -3,7 +3,7 @@
 > packageVersion(c("Seurat"))
 [1] ‘5.1.0’
 
-## 根据SCT的提示安装了一个什么包，之后matrixStats就有error需降低版本
+## 每次加装新包之后matrixStats就有error，需降低版本，否则SCT出错
 ## wget https://cran.r-project.org/src/contrib/Archive/matrixStats/matrixStats_1.1.0.tar.gz
 install.packages("matrixStats_1.1.0.tar.gz",repos=NULL) 
 ```
