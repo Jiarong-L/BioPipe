@@ -26,13 +26,26 @@ pbmc3k
 
 建议综合考虑多个软件的结果（此练习只是单纯的分别运行代码、没有投票整合），不过也可以只用SOTA方法
 
-a. 去除Doublet（UMI异常高的细胞），但需要注意（免疫细胞+组织细胞）的情况    
-    - Scrublet(Py), DoubletFinder(R), scDblFinder(R)
-b. Imputation进行降噪    
-c. 去除Contamination（破碎细胞飘入液滴）    
+### a. 去除Doublet
+* 说明：（UMI异常高的细胞），但需要注意（免疫细胞+组织细胞）的情况
+* 工具：Scrublet(Py), DoubletFinder(R), scDblFinder(R)
 
-
+查看Doublet的分布，随后从数据中将它们去除 
 ![DoubletFinder(均匀分布可能是ok的？)](./img/02a_1.png)
+
+其中采用 Doublet Simulation 的方法，对于相同细胞类型构成的 Doublet 不敏感 --- 可能因为聚类时会聚到一起，影响了 Score 的计算？？
+
+### b. Imputation进行降噪  
+* 说明：当基因表达量过低时候（正常情况中位数约1500）
+* 工具：
+
+### c. 去除Contamination
+* 说明：（破碎细胞飘入液滴） 
+* 工具：
+
+
+
+
 
 
 
