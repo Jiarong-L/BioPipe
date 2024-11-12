@@ -66,9 +66,9 @@ pbmc3k <- doubletFinder(pbmc3k, PCs = sig_PC, pN = 0.25, pK = pK_bcmvn,
 ### Plot Singlet/Doublet 
 cols = colnames(pbmc3k@meta.data)
 res_col = cols[length(cols)]
-p1 <- DimPlot(pbmc3k, reduction = "umap", group.by = res_col) ## "DF.classifications_0.25_0.01_246"
+p1 <- DimPlot(pbmc3k, reduction = "umap", group.by = res_col) ## "DF.classifications_0.25_0.01_247"
 ggsave('../img/02a_1.png', p1, width= 5 , height= 3)
 
 table(pbmc3k@meta.data[res_col])
 # Doublet Singlet
-#     246    2451
+#     247    2450

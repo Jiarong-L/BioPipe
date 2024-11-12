@@ -37,4 +37,4 @@ ggsave('../img/02a_2.png', p2, width= 5 , height= 3)
 
 table(sce$scDblFinder.class)
 # singlet doublet
-#    2666      31
+#    2670      27
