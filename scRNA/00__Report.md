@@ -39,7 +39,7 @@ pbmc3k
 ### c. 去除Contamination
 * 说明：（破碎细胞的基因飘入液滴），当UMI曲线末段下降幅度不够陡峭时，当聚类图像显得有些模糊毛躁时
 * 工具： [SoupX](https://github.com/constantAmateur/SoupX)）/ [DecontX](https://bioc.r-universe.dev/decontX/doc/manual.html)
-* 原理：对背景游离的RNA进行特征分析（需要 raw_feature_bc_matrix 文件夹）/ 使用Beyesian模型，随后从捕获的细胞数据中去除污染部分
+* 原理：利用背景游离的RNA（需要空液滴数据）/ 使用Beyesian模型，随后从捕获的细胞数据中去除污染部分
 
 
 ## 03 细胞注释
@@ -48,6 +48,7 @@ pbmc3k
 
 
 ## 04 细胞轨迹
+
 
 
 
@@ -115,6 +116,10 @@ conda install r-rstan
 
 # options(timeout=10000)
 # install.packages('SoupX')
+
+
+
+
 
 
 
