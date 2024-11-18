@@ -46,8 +46,17 @@ pbmc3k
 
 自动化的SingleR注释并不一定准确，可以手动注释、使用各种DL工具
 
+[Score_of_Celltype_i = 交集(Input_Marker,DB_CellMarker) / 并集(Input_Marker,DB_CellMarker)](https://blog.csdn.net/m0_72224305/article/details/127921124)
+
+
+![SingleR注释，此例中质量似乎不太行](./img/03_1.png)
+
+
+
+
 
 ## 04 细胞轨迹
+
 
 
 
@@ -118,8 +127,9 @@ conda install r-rstan
 # install.packages('SoupX')
 
 
-
-
+# BiocManager::install("SingleR")
+conda install r-v8
+# BiocManager::install("celldex")
 
 
 
