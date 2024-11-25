@@ -26,11 +26,13 @@ scCellCycle <- function(SeuratObj){
     return(SeuratObj)
 }
 
-scRoutine <- function(SeuratObj){     # 事实上PC数量应当根据图来估计，此处偷懒
+scRoutine <- function(SeuratObj){     # 事实上PC数量应当根据图来估计，此处偷懒   
     SeuratObj <- RunPCA(SeuratObj, verbose = FALSE)    ##  , assay = "SCT"   
     SeuratObj <- RunUMAP(SeuratObj, reduction = "pca", dims = 1:30)             
     SeuratObj <- RunTSNE(SeuratObj, reduction = "pca", dims = 1:30)          
-    SeuratObj <- FindNeighbors(SeuratObj, reduction = "pca", dims = 1:30)     
+    SeuratObj <- FindNeighbors(SeuratObj, reduction = "pca", dims = 1:30, ) 
+              ## FindNeighbors(SeuratObj, features = VariableFeatures(object = SeuratObj))    
+              ## pbmc3k@neighbors/pbmc3k@graphs 只能返回一个，因为 return.neighbor =TRUE 与SNN互斥
     SeuratObj <- FindClusters(SeuratObj, verbose = FALSE, resolution = 0.1)  
     return(SeuratObj)
 }

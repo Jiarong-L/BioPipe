@@ -57,14 +57,15 @@ pbmc3k
 
 ## 04 细胞轨迹
 
+定义细胞类型后（且需要自定义初始状态的细胞），选定xx功能相关的基因（生物学背景/HVG/PAGA-DiffusionMap），构建xx功能相关的细胞轨迹（即 branching tree），绘制相关基因在轨迹上的表达
 
 
-
-
-
+绘制时可用热图，而点图graph的layout似乎也只需要关心其init位置？
 
 
 ## 05 细胞通讯
+
+
 
 
 
@@ -107,6 +108,11 @@ conda install r-devtools -y
 
 # BiocManager::install("SingleCellExperiment")    ## Don't update curl !!
 # BiocManager::install("ComplexHeatmap")
+
+
+conda install r-hdf5r -y
+# install.packages("remotes")
+# remotes::install_github("mojaveazure/seurat-disk")
 
 
 # devtools::install_github('chris-mcginnis-ucsf/DoubletFinder')
