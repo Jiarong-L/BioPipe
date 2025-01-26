@@ -66,3 +66,9 @@ pbmc3k@meta.data$Anno_1 = SingleR_Anno$labels[match(clusters,rownames(SingleR_An
 
 p1 = plotScoreHeatmap(SingleR_Anno)   ## plotDeltaDistribution(SingleR_Anno, ncol = 5)
 ggsave('../img/03_1.png', p2, width= 8 , height= 5)
+
+
+
+## Save Result with Anno
+SaveH5Seurat(pbmc3k, filename = 'pbmc3k_anno1.h5Seurat')
+Convert('pbmc3k_anno1.h5Seurat', dest = "h5ad")    

@@ -1,6 +1,8 @@
 
 [流程示例一](https://djhcod.github.io/r-notes/single_cell/sc_supplementary/DecontX.html)
 
+[Omicverse: Bulk/sc 一站式流程](https://omicverse.readthedocs.io/en/latest/index.html)
+
 
 ## 01 数据
 
@@ -51,31 +53,35 @@ pbmc3k
 
 ![SingleR注释，此例中质量似乎不太行](./img/03_1.png)
 
-
+其它：[Omicverse 自动注释](https://zhuanlan.zhihu.com/p/653391043)，可选用 cellmarker/panglaodb/... 
 
 
 
 ## 04 细胞轨迹
 
-定义细胞类型后（且需要自定义初始状态的细胞），选定xx功能相关的基因（生物学背景/HVG/PAGA-DiffusionMap），构建xx功能相关的细胞轨迹（即 branching tree），绘制相关基因在轨迹上的表达
+也称拟时序分析。定义细胞类型后（且需要自定义初始状态的细胞），选定xx功能相关的基因（生物学背景/HVG/PAGA-DiffusionMap），构建xx功能相关的细胞轨迹（即 branching tree），绘制基因在轨迹上的表达（e.g.发育过程中基因开关）
 
 
-绘制时可用热图，而点图graph的layout似乎也只需要关心其init位置？
+绘制时，（点图+graph）主要关心其layout（e.g.[PHATE](https://zhuanlan.zhihu.com/p/143266371)），热图自己按顺序定义path中包含的node即可
+
+
+工具：[scvelo 速率分析](https://www.jianshu.com/p/bfff8a4cf611) (细胞状态信息 -- unspliced/spliced mRNA，需fastq)；PAGA (细胞类型在特征空间中的距离)；[monocle3](https://www.jianshu.com/p/c402b6588e17)
 
 
 ## 05 细胞通讯
 
+参考 Spatial 部分，使用Ligand-Receptor数据库（膜蛋白/细胞因子/外泌体/..?）进行注释推断
 
+可自行从PPI/STRING中总结(CellTalkDB)，或使用各种特制工具 CellPhoneDB(人)/CellChat(人/鼠)/[NicheNet(人/鼠) ](https://www.jianshu.com/p/30c6e8a24415)
 
-
-
+以上只是关心细胞外的 配体-受体 相互作用，[FlowSig](https://github.com/axelalmet/flowsig)进一步关联了通信引起的细胞内部Pathway（Q：或许可用从 细胞通讯 推断抑制/促进作用？）
 
 
 ## 06 其它
 
 ### CNV
 
-### TF
+### GRN/TF
 
 
 
@@ -136,10 +142,6 @@ conda install r-rstan
 # BiocManager::install("SingleR")
 conda install r-v8
 # BiocManager::install("celldex")
-
-
-
-
 
 ```
 
