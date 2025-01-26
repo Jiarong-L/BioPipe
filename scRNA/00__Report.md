@@ -65,7 +65,10 @@ pbmc3k
 绘制时，（点图+graph）主要关心其layout（e.g.[PHATE](https://zhuanlan.zhihu.com/p/143266371)），热图自己按顺序定义path中包含的node即可
 
 
-工具：[scvelo 速率分析](https://www.jianshu.com/p/bfff8a4cf611) (细胞状态信息 -- unspliced/spliced mRNA，需fastq)；PAGA (细胞类型在特征空间中的距离)；[monocle3](https://www.jianshu.com/p/c402b6588e17)
+工具：[scvelo 速率分析](https://www.jianshu.com/p/bfff8a4cf611) (细胞状态信息 -- unspliced/spliced mRNA，需fastq)；PAGA (细胞类型在特征空间中的距离 -- Diffusion maps 选取连续变化基因)；[monocle3](https://www.jianshu.com/p/c402b6588e17) (选取隔断的HVG)；CytoTRACE 
+
+注意：1. 并不是所有细胞都有发育关系 (e.g.体细胞-免疫细胞)，2. monocle自选的HVG是离散/隔断的但发育过程应该是连续的，所以建议选取连续变化的基因列表/使用Seurat的HVG，3. 建议不要用PAGA分析发育轨迹，相似度不一定符合生物学意义？而且最好自己指定发育起点
+
 
 
 ## 05 细胞通讯
@@ -74,7 +77,7 @@ pbmc3k
 
 可自行从PPI/STRING中总结(CellTalkDB)，或使用各种特制工具 CellPhoneDB(人)/CellChat(人/鼠)/[NicheNet(人/鼠) ](https://www.jianshu.com/p/30c6e8a24415)
 
-以上只是关心细胞外的 配体-受体 相互作用，[FlowSig](https://github.com/axelalmet/flowsig)进一步关联了通信引起的细胞内部Pathway（Q：或许可用从 细胞通讯 推断抑制/促进作用？）
+以上只是关心细胞外的 配体-受体 相互作用，NicheNet/[FlowSig](https://github.com/axelalmet/flowsig)进一步关联了通信引起的细胞内部Pathway（Q：或许可用从 细胞通讯 推断下一个时间节点的命运？）
 
 
 ## 06 其它
@@ -82,6 +85,31 @@ pbmc3k
 ### CNV
 
 ### GRN/TF
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
