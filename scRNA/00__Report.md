@@ -65,10 +65,17 @@ pbmc3k
 绘制时，（点图+graph）主要关心其layout（e.g.[PHATE](https://zhuanlan.zhihu.com/p/143266371)），热图自己按顺序定义path中包含的node即可
 
 
-工具：[scvelo 速率分析](https://www.jianshu.com/p/bfff8a4cf611) (细胞状态信息 -- unspliced/spliced mRNA，需fastq)；PAGA (细胞类型在特征空间中的距离 -- Diffusion maps 选取连续变化基因)；[monocle3](https://www.jianshu.com/p/c402b6588e17) (选取隔断的HVG)；CytoTRACE 
+* 工具：注意，并不是所有细胞都有发育关系 (e.g.体细胞-免疫细胞)
+    - [scvelo 速率分析](https://www.jianshu.com/p/bfff8a4cf611) (细胞状态信息 -- unspliced/spliced mRNA，需fastq)，建议选用动态模型 ```scv.tl.velocity(adata,mode='dynamics')```
+    - PAGA (细胞类型在特征空间中的距离，不一定符合生物学意义，**不建议使用**)
+    - [monocle3](https://www.jianshu.com/p/c402b6588e17) (选取隔断的HVG)，方法
+    - CytoTRACE (推断分化起点，细胞表达的基因数目越多 越接近干细胞) --其它方法需要指定发育起点
+    - URD
 
-注意：1. 并不是所有细胞都有发育关系 (e.g.体细胞-免疫细胞)，2. monocle自选的HVG是离散/隔断的但发育过程应该是连续的，所以建议选取连续变化的基因列表/使用Seurat的HVG，3. 建议不要用PAGA分析发育轨迹，相似度不一定符合生物学意义？而且最好自己指定发育起点
-
+* 选择输入基因集
+    - 文献：与研究的生物过程、细胞类型或疾病相关的基因
+    - HVG / 不同时间点或处理条件下的差异基因 / 回归、GRN得知最具有预测能力的基因 / 时间序列上有动态变化的基因
+    - 注：有时降维后图像过于离散/隔断（e.g.用monocle自选的HVG），但发育过程应该是连续的，此时或许可优化基因集（e.g.使用Seurat的HVG），或者修改降维方法（推荐 [Diffusion Map](https://www.bilibili.com/video/BV1et411k7Yn/)）
 
 
 ## 05 细胞通讯
@@ -82,18 +89,8 @@ pbmc3k
 
 ## 06 其它
 
-### CNV
-
-### GRN/TF
-
-
-
-
-
-
-
-
-
+* sc-ATAC 提示候选 TFBS，但如果只有单细胞数据也可以推断 GRN，见 [GRN相关笔记](https://jiarong-l.github.io/notes/Readings/GRN/)
+* inferCNV 比较目标细胞与参考细胞的基因表达模式，提示拷贝数显著的增加/降低(i.e.缺失)  ---- 评估肿瘤细胞
 
 
 
