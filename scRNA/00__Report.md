@@ -84,19 +84,19 @@ pbmc3k
 
 可自行从PPI/STRING中总结(CellTalkDB)，或使用各种特制工具 CellPhoneDB(人)/CellChat(人/鼠)/[NicheNet(人/鼠) ](https://www.jianshu.com/p/30c6e8a24415)
 
-以上只是关心细胞外的 配体-受体 相互作用，NicheNet/[FlowSig](https://github.com/axelalmet/flowsig)进一步关联了通信引起的细胞内部Pathway（Q：或许可用从 细胞通讯 推断下一个时间节点的命运？）
+以上只是关心细胞外的 配体-受体 相互作用，NicheNet/[FlowSig](https://github.com/axelalmet/flowsig)([中文](https://news.bioon.com/article/570184140310.html))进一步关联了通信引起的细胞内部Pathway（Q：或许可用从 细胞通讯 推断下一个时间节点的命运？）
 
 
 ## 06 其它
 
-* sc-ATAC 提示候选 TFBS，但如果只有单细胞数据也可以推断 GRN，见 [GRN相关笔记](https://jiarong-l.github.io/notes/Readings/GRN/)
+* sc-ATAC 提示候选 TFBS，但如果只有单细胞数据也可以推断 GRN，见 [GRN相关笔记](https://jiarong-l.github.io/notes/Readings/GRN/)，或根据靶基因的表达量推断TF活性([DoRothEA](https://github.com/saezlab/DoRothEA)/[pySCENIC](https://github.com/aertslab/pySCENIC))
 * inferCNV 比较目标细胞与参考细胞的基因表达模式，提示拷贝数显著的增加/降低(i.e.缺失)  ---- 评估肿瘤细胞
 
 
 
 
 
-
+https://lishensuo.github.io/posts/bioinfo/010%E5%8D%95%E7%BB%86%E8%83%9E%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7--%E8%BD%AC%E5%BD%95%E5%9B%A0%E5%AD%90pyscenic/
 
 
 

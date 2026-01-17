@@ -3,6 +3,9 @@
 
 注，由于偷懒没有QC，这一步请参考单细胞教程
 
+
+TODO：[nicheDE](https://kaishumason.github.io/NicheDE/articles/Tutorial.html) 分析某类型细胞在不同邻近微环境（半径？）中的差异表达基因？e.g.巨噬细胞靠近肿瘤细胞后上调X基因表达
+
 ## 01 数据
 
 SpaceRanger 标准输，包括
@@ -42,9 +45,9 @@ GBM4_spaceranger_out
 
 ## 03 空间区域
 
-与单细胞不同，空间转录组的聚类不仅仅是为了定义细胞类型，更是为了辅助定义功能区域。
+与单细胞不同，空间转录组的聚类不仅仅是为了定义细胞类型，更是为了辅助定义功能区域。有时候疾病特征可能不是单纯的细胞亚型、而是Niche内的细胞组合
 
-通过对比HE染色片，或者对cell marker进行注释，可以给每个cell分配功能区域的标签。（**这一信息事实上可以通过图像分割算法获得**，而且一个区域内也不一定只有一种细胞）
+通过对比HE染色片，或者对cell marker进行注释，可以给每个cell分配功能区域的标签。（**组织区域可以通过图像分割算法获得**，注意一个区域内不一定只有一种细胞）
 
 ![](./img/03_1.png)
 
@@ -80,7 +83,7 @@ GBM4_spaceranger_out
 
 ## 05 细胞通信
 
-一般基于人工校正的[Ligand-Receptor数据库CellphoneDB](https://www.jianshu.com/p/38a9376f5286)进行细胞交互的注释，其它的工具基于类似的思路进行开发，常用的[CellChat (R)](https://cloud.tencent.com/developer/article/2356466)还考虑了多聚体和辅因子，以及信号通路水平的通信。其它工具：[stLearn (Python)](https://www.jianshu.com/p/17c3ef3dd312) 
+一般基于人工校正的[Ligand-Receptor数据库CellphoneDB](https://www.jianshu.com/p/38a9376f5286)进行细胞交互的注释，其它的工具基于类似的思路进行开发，常用的[CellChat (R)](https://cloud.tencent.com/developer/article/2356466)还考虑了多聚体和辅因子，以及信号通路水平的通信。其它工具：[stLearn (Python)](https://www.jianshu.com/p/17c3ef3dd312)，[MISTy 互作/共定位](https://www.jianshu.com/p/c51c7d46e812)，[COMMOT 信号流向--最好配合轨迹分析](https://github.com/zcang/COMMOT)
 
 单细胞意在分析不同细胞类型之间的相互作用；例如，iTALK会取细胞类型中相关基因的平均表达量
 ![celltalker (R)](https://github.com/arc85/celltalker/raw/master/man/figures/README-example-2.png)
@@ -106,16 +109,6 @@ GBM4_spaceranger_out
 注：除了单个基因/pathway的plot，也可以通过设置```signaling = c(.............)```取多个基因/pathway的均值进行统计
 
 同时也可以用 ```netVisual_bubble``` 查看 ```C1->C2``` 间重要 L-R pairs 的表达量
-
-
-
-
-
-
-
-
-
-
 
 
 
