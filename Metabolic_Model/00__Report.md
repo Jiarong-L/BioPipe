@@ -8,7 +8,7 @@ Menopausal transition is a natural aging process of ovarian functions, which cou
 
 [Hormone therapies (MHT)](https://www.fda.gov/drugs/drug-safety-and-availability/fda-requests-labeling-changes-related-safety-information-clarify-benefitrisk-considerations) are suggested to relieve and prevent the menopausal symptoms (not for aged persons), with careful considerations in minimal doses, durations, and risks of breast cancer or cardiovascular diseases. 
 
-In this attempt, let's see the brain cells of the meopausal brain and simulate respond to the hormone levels, using:
+In this attempt, let's see the brain cells of the meopausal brain and simulate their response to the hormone levels, using:
 
 Single-cell Atlas of the Brain & [Metabolic Atlas](https://metabolicatlas.org/) & Receptor-STN Info
 
